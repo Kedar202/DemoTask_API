@@ -41,7 +41,6 @@ public class MarksServiceImpl implements MarksService {
             } else {
                 return new Response("500", "Data Not Saved SuccessFully", new ArrayList<>());
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,9 +50,10 @@ public class MarksServiceImpl implements MarksService {
     @Override
     public Response getMarksByStudentId(Integer studentId) {
         Response response = new Response();
+        List<Map<String, Object>> mapList = null;
         try {
             List<Marks> marksList = marksDao.getMarksByStudentId(studentId);
-            List<Map<String, Object>> mapList = new ArrayList<>();
+            mapList = new ArrayList<>();
             for (Marks marks : marksList) {
                 Map<String, Object> map = new HashMap<>();
                 map.put(subjectDao.findById(marks.getSubjectData().getSubjectId()).get().getTitle(), marks.getMarks());
@@ -63,6 +63,7 @@ public class MarksServiceImpl implements MarksService {
 
         } catch (Exception e) {
             e.printStackTrace();
+
         }
         return response;
     }
@@ -72,12 +73,15 @@ public class MarksServiceImpl implements MarksService {
         Response response = new Response();
         try {
             Optional<Marks> marks = marksDao.findById(markId);
+            System.out.println("data is present" + marks.get());
             if (marks.isPresent()) {
                 marks.get().setStudentEntity(studentDao.findById(markDto.getStudentId()).get());
                 marks.get().setSubjectData(subjectDao.findById(markDto.getSubjectId()).get());
                 marks.get().setMarks(markDto.getMarks());
                 marksDao.save(marks.get());
                 return new Response("200", "Data Updated SuccessFully", null);
+            } else {
+                return new Response("500", "Data Not Saved SuccessFully", null);
             }
 
         } catch (Exception e) {

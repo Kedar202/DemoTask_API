@@ -11,12 +11,12 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer teacherId;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch =  FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "subjectId")
     @JsonBackReference
     private SubjectData subjectData;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch =  FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "groupId")
     @JsonBackReference
     private GroupDetails groups;

@@ -36,7 +36,6 @@ public class StudentServiceImpl implements StudentService {
             }
         } catch (Exception e) {
 
-
         }
         return response;
     }

@@ -26,8 +26,6 @@ public class GroupServiceImpl implements GroupService {
                 groupDao.save(groupDetails);
                 return new Response("200", "Group Added SuccessFully", new ArrayList<>());
             } else {
-                response.setMessage("Failed");
-                response.setStatus("500");
                 return new Response("500", "Group Not Added SuccessFully", new ArrayList<>());
             }
         } catch (Exception e) {

@@ -10,6 +10,11 @@ public class Response {
         this.resultObj = resultObj;
     }
 
+    public Response(String status, String message) {
+        this.status = status;
+        this.message = message;
+    }
+
     private String message;
 
     private Object resultObj;

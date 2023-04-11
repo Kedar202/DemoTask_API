@@ -45,11 +45,10 @@ public class TeacherServiceImpl implements TeacherService {
                 teacherReq.setSubjectData(subjectDao.findById(teacherReqDto.getSubjectId()).get());
                 teacherReq.setGroups(groupDao.findById(teacherReqDto.getGroupId()).get());
                 teacherDao.save(teacherReq);
-                new Response("200", "Teacher Created SuccessFully", new ArrayList<>());
+                return  new Response("200", "Teacher Created SuccessFully", new ArrayList<>());
             } else {
-                new Response("500", "Teacher Not Created SuccessFully", new ArrayList<>());
+                return new Response("500", "Teacher Not Created SuccessFully", new ArrayList<>());
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

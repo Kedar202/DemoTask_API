@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/authenticate").permitAll().antMatchers("/registration/registerUser").permitAll()
+                .authorizeRequests().antMatchers("/authenticate").permitAll().antMatchers("/student/**").permitAll().antMatchers("/registration/registerUser").permitAll()
                 // all other requests need to be authenticated
                 .and().formLogin().loginPage("/login").usernameParameter("username").permitAll().and()
                 .addFilterBefore(new CustomCorsFilter(), ChannelProcessingFilter.class).
